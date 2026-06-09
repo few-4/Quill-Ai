@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const frontendPkgPath = path.resolve(__dirname, "../Frontend/package.json");
-const backendDistPath = path.resolve(__dirname, "./dist");
+const backendDistPath = path.resolve(__dirname, "./public");
 const backendDistIndexPath = path.resolve(backendDistPath, "index.html");
 
 console.log("[Build] Smart Build Orchestrator starting...");
@@ -39,14 +39,14 @@ if (fs.existsSync(frontendPkgPath)) {
         process.exit(1);
     }
     
-    console.log("[Build] Checking for pre-built static assets in Backend/dist...");
+    console.log("[Build] Checking for pre-built static assets in Backend/public...");
     
     if (fs.existsSync(backendDistIndexPath)) {
-        console.log("[Build] Valid pre-built static assets found at Backend/dist.");
+        console.log("[Build] Valid pre-built static assets found at Backend/public.");
         console.log("[Build] Skipping compilation. Production build ready to serve!");
     } else {
-        console.error("[Build] Error: No pre-built static assets found at Backend/dist, and Frontend source is missing.");
-        console.error("[Build] Please run 'npm run build' locally first to compile Frontend and copy it to Backend/dist, then commit and push.");
+        console.error("[Build] Error: No pre-built static assets found at Backend/public, and Frontend source is missing.");
+        console.error("[Build] Please run 'npm run build' locally first to compile Frontend and copy it to Backend/public, then commit and push.");
         process.exit(1);
     }
 }

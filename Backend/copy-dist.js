@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const srcDir = path.resolve(__dirname, "../Frontend/dist");
-const destDir = path.resolve(__dirname, "./dist");
+const destDir = path.resolve(__dirname, "./public");
 
 function copyDir(src, dest) {
     fs.mkdirSync(dest, { recursive: true });
@@ -28,10 +28,10 @@ try {
     if (fs.existsSync(srcDir)) {
         if (fs.existsSync(destDir)) {
             fs.rmSync(destDir, { recursive: true, force: true });
-            console.log("Cleared existing dest dist directory in Backend.");
+            console.log("Cleared existing dest public directory in Backend.");
         }
         copyDir(srcDir, destDir);
-        console.log("Successfully copied dist folder from Frontend to Backend!");
+        console.log("Successfully copied dist folder from Frontend to Backend/public!");
     } else {
         console.error("Source dist folder does not exist at:", srcDir);
         process.exit(1);
